@@ -1,9 +1,14 @@
+import java_cup.runtime.*;
+
 %%
 
+%cupdebug
 %class LexAnalyzer
 %standalone
 %line
 %column
+%cupsym Sym
+%cup
 
 TERM_LINHA = \r|\n|\r\n
 INPUT = [^\r\n]
@@ -14,29 +19,30 @@ ID = [a-zA-Z_][a-zA-Z0-9_]*
 INTEIRO =  0 | [1-9][0-9]*
 
 %%
-"if" 				{System.out.println(yytext() + " - " + "Palavra reservada if");}        		
-"then" 			{System.out.println(yytext() + " - " + "Palavra reservada then");}    
-"else" 			{System.out.println(yytext() + " - " + "Palavra reservada else");}    
-"def" 			{System.out.println(yytext() + " - " + "Palavra reservada def");}    
 
-">" 				{System.out.println(yytext() + " - " + "Op menorQue");}    
-"<" 				{System.out.println(yytext() + " - " + "Op maiorQue");}
-"=" 				{System.out.println(yytext() + " - " + "Op igual");}  
+"if" 				{return new Symbol(Sym.IF);}        		
+"then" 			{return new Symbol(Sym.THEN);}    
+"else" 			{return new Symbol(Sym.ELSE);}    
+"def" 			{return new Symbol(Sym.DEF);}
 
-"+" 				{System.out.println(yytext() + " - " + "Op soma");}
-"-" 				{System.out.println(yytext() + " - " + "Op subtracao");} 
-"*" 				{System.out.println(yytext() + " - " + "Op multiplicacao");} 
-"/" 				{System.out.println(yytext() + " - " + "Op divisao");} 
+">" 				{return new Symbol(Sym.LESSTHAN);}    
+"<" 				{return new Symbol(Sym.MORETHAN);}
+"=" 				{return new Symbol(Sym.ASSIGNMENT);}  
 
-"(" 				{System.out.println(yytext() + " - " + "Abre parenteses");}
-")" 				{System.out.println(yytext() + " - " + "Fecha parenteses");}
-";" 				{System.out.println(yytext() + " - " + "ponto e virgula");}
-"," 				{System.out.println(yytext() + " - " + "virgula");}
+"+" 				{return new Symbol(Sym.PLUS);}
+"-" 				{return new Symbol(Sym.MINUS);} 
+"*" 				{return new Symbol(Sym.MULT);} 
+"/" 				{return new Symbol(Sym.DIV);} 
+
+"(" 				{return new Symbol(Sym.LEFTPAREN);}
+")" 				{return new Symbol(Sym.RIGHTPAREN);}
+";" 				{return new Symbol(Sym.SEMICOLON);}
+"," 				{return new Symbol(Sym.COMMA);}
 
 {BRANCO} 						{/*ignore*/}
 {COMENT_LINHA} 			{/*ignore*/}
 {COMENT_COLUNA} 		{/*ignore*/}
-{ID} 						{System.out.println(yytext() + " - " + "Identificador");}
-{INTEIRO} 				{System.out.println(yytext() + " - " + "Numero Inteiro");}
+{ID} 						{return new Symbol(Sym.IDENTIFIER);}
+{INTEIRO} 				{return new Symbol(Sym.INTEGER);}
 
 [^]			{ throw new RuntimeException("Caractere invalido " + yytext() + " na linha " + (yyline+1) + ", coluna " +(yycolumn+1)); }
