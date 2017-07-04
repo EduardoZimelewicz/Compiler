@@ -7,5 +7,8 @@ def mdc(a,b) =
 	 else mdc(b,mod(a,b));
 def mod(a,b) =
 	if a< b
+	 if a > b
+	  then a
+	  else b;
 	 then a
-	 else mod(a-b,b)
+	 else mod(a-b,b);
