@@ -1,6 +1,5 @@
 import java_cup.runtime.*;
 
-
 /* Terminals */
 terminal COMMA, SEMICOLON, LEFTPAREN, RIGHTPAREN;
 terminal MORETHAN, LESSTHAN, MINUS, PLUS, MULT, DIV, ASSIGNMENT;
@@ -19,9 +18,12 @@ non terminal ARGS;
 non terminal SEQ;
 non terminal E;
 
+precedence left PLUS, MINUS; 
+precedence left MULT, DIV;
+precedence left MORETHAN, LESSTHAN, ASSIGNMENT;
+precedence left IF, ELSE, THEN;
 precedence nonassoc RIGHTPAREN, LEFTPAREN;
 precedence nonassoc COMMA;
-precedence left PLUS, MINUS, DIV, MULT;
 
 start with P;
 
@@ -30,17 +32,19 @@ P ::= IDENTIFIER ASSIGNMENT INTEGER SEMICOLON P
 	I
 ;
 
-I ::= D SEMICOLON I
+I ::= D I
 | 
 	D
 ;
 
-D ::= DEF IDENTIFIER LEFTPAREN ARGS RIGHTPAREN ASSIGNMENT E SEMICOLON;
+D ::= DEF IDENTIFIER LEFTPAREN ARGS RIGHTPAREN ASSIGNMENT E SEMICOLON
+;
 
-ARGS ::= IDENTIFIER SEMICOLON ARGS 
+ARGS ::= IDENTIFIER COMMA ARGS 
 	| 
 		IDENTIFIER
 	;
+
 	
 SEQ ::= E
 	| 
@@ -52,6 +56,8 @@ opRel ::= LESSTHAN
 		MORETHAN
 	|
 		ASSIGNMENT
+	|
+	
 	;
 
 opS ::= PLUS

@@ -1,0 +1,6 @@
+def mod(a) = 
+	if a = b
+	 then b
+	 else a;
+def b ( a ) = 1;
+def h (g,f) =0;
