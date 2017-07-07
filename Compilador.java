@@ -6,12 +6,12 @@ import java.nio.file.Paths;
 public class Compilador {
     public static void main(String[] args) {
         LexAnalyzer lexico = null;
-        Parser p = null;
+        parser p = null;
         boolean verificador = true;
-        String file = "C:/Users/rodri/Documents/Eclipse-Workspace/Compilador/src/input.txt";
+        String file = "C:/Users/Familia/Documents/Eclipse/Compilador/src/input3.txt";
         try{
             lexico = new LexAnalyzer(new FileReader(file));
-            p = new Parser (lexico);
+            p = new parser (lexico);
             p.parse();
             
         } catch(Exception e){
