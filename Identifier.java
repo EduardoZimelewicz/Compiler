@@ -8,7 +8,7 @@ public class Identifier extends Arvore{
 	}
 	@Override
 	public Integer eval(Tabela e) {
-		return e.lookup(id);
+		return null;
 	}
 
 }

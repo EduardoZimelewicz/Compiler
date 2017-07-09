@@ -1,24 +1,31 @@
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Tabela {
-	public HashMap<String, Integer> map;
+	public static Map<Integer,ArrayList<ID>> map = new HashMap<>();
+	public static int key = 1;
 	
-	public Tabela() {
-		this.map = new HashMap<String, Integer>();
+	public static ArrayList<ID> lookup(int valor) {
+		return map.get(valor);
 	}
 	
-	public int lookup(String id) {
-		return map.get(id);
+	public static void increaseKey() {
+		key++;
 	}
 	
-	public void set(String id, int value) {
-		map.put(id, value);
+	public static int getKey() {
+		return key;
 	}
 	
-	public void print() {
-		for(Map.Entry<String,Integer> entry: map.entrySet()) {
+	public static void set(int key,ArrayList<ID> escopo) {
+		map.put(key, escopo);
+	}
+	
+	public static void print() {
+		for(Entry<Integer, ArrayList<ID>> entry: map.entrySet()) {
 			System.out.println(entry.getKey() + " -> " + entry.getValue());;
 		}
 	}

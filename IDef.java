@@ -3,7 +3,6 @@ public class IDef extends Arvore{
 	Define valor1;
 	IDef valor2;
 	
-	
 	public IDef(Define valor1) {
 		this.valor1 = valor1;
 		this.valor2 = null;

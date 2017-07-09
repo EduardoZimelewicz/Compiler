@@ -13,8 +13,10 @@ public class Compilador {
         
             lexico = new LexAnalyzer(new FileReader(file));
             p = new Parser (lexico);
+            
             Arvore result = (Arvore)p.parse().value;
             System.out.println(result.toString());
+            Tabela.print();
             
     }
     

@@ -1,5 +1,6 @@
 a = 312;
 b = 111;
+c = 321;
 //oieeee
 def mdc(a,b) =
 	if mod(a,b)= 0
@@ -8,4 +9,4 @@ def mdc(a,b) =
 def mod(a,b) =
 	if a< b
 	 then a
-	 else mod(a - b,b);
+	 else mod(a - b,b);	 

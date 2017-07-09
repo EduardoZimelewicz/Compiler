@@ -1,15 +1,22 @@
+import java.util.ArrayList;
+
 public class PDef extends Arvore {
 	public String esq;
 	public Integer dir;
 	public PDef p;
 	public IDef i;
+	public ArrayList<ID> lista;
 
 	public PDef(Token esq, Token dir, PDef p) {
 		this.esq = esq.value;
 		this.dir = Integer.parseInt(dir.value);
 		this.p = p;
 		this.i = null;
-
+		this.lista = new ArrayList<>();
+		int escopo = Tabela.getKey();		
+		lista.add(new ID(escopo, this.esq, this.dir));
+		Tabela.increaseKey();
+		Tabela.set(escopo,lista);
 	}
 
 	public PDef(IDef i) {
@@ -17,6 +24,7 @@ public class PDef extends Arvore {
 		this.dir = null;
 		this.p = null;
 		this.i = i;
+		this.lista = new ArrayList<>();
 	}
 
 	@Override
@@ -25,7 +33,7 @@ public class PDef extends Arvore {
 			return null;
 		} else {
 			int value = dir;
-			e.set(esq, value);
+			
 			return value;
 		}
 	}
