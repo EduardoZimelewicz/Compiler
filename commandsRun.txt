@@ -1,0 +1,3 @@
+java -jar caminho-do-jar -parser Parser -symbols Sym language.cup
+
+Java -jar jflex.jar Analyzer.jflex

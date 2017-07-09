@@ -8,15 +8,15 @@ terminal Token IDENTIFIER;
 terminal Token INTEGER;
 
 /* Nonterminals */
-non terminal opRel;
-non terminal opS;
-non terminal opM;
-non terminal Assignment P;
-non terminal I;
-non terminal D;
-non terminal ARGS;
-non terminal SEQ;
-non terminal E;
+non terminal OpSDef opS;
+non terminal OpRelDef opRel;
+non terminal OpMDef opM;
+non terminal PDef P;
+non terminal IDef I;
+non terminal Define D;
+non terminal ArgsDef ARGS;
+non terminal SeqDef SEQ;
+non terminal EDef E;
 
 precedence left PLUS, MINUS; 
 precedence left MULT, DIV;
@@ -27,57 +27,57 @@ precedence nonassoc COMMA;
 
 start with P;
 
-P ::= IDENTIFIER:id ASSIGNMENT INTEGER:integer SEMICOLON P:p {: RESULT = new Assignment(id, integer, p); :}
+P ::= IDENTIFIER:id ASSIGNMENT INTEGER:integer SEMICOLON P:p {: RESULT = new PDef(id, integer, p); :}
 | 	
-	I:i {: RESULT = new NonT(i); :} 
+	I:i {: RESULT = new PDef(i); :} 
 ;
 
-I ::= D:d I:i {: RESULT = new NonT(d, i); :}
+I ::= D:d I:i {: RESULT = new IDef(d,i); :}  
 | 
-	D:d {: RESULT = new NonT(d); :}  
+	D:d   {: RESULT = new IDef(d); :}
 ;
 
-D ::= DEF IDENTIFIER LEFTPAREN ARGS RIGHTPAREN ASSIGNMENT E SEMICOLON
+D ::= DEF:d IDENTIFIER:id LEFTPAREN:lp ARGS:args RIGHTPAREN:rp ASSIGNMENT E:e SEMICOLON {: RESULT  = new Define(d, id, lp, args, rp, e); :}
 ;
 
-ARGS ::= IDENTIFIER COMMA ARGS 
+ARGS ::= IDENTIFIER:id COMMA:c ARGS:args {: RESULT = new ArgsDef(id,c,args); :} 
 	| 
-		IDENTIFIER
+		IDENTIFIER:id {: RESULT = new ArgsDef(id); :}
 	;
 
 	
-SEQ ::= E
+SEQ ::= E:e {: RESULT = new SeqDef(e); :}
 	| 
-		SEQ COMMA E
+		SEQ:s COMMA:c E:e {: RESULT = new SeqDef(s,c,e); :}
 	;
 	
-opRel ::= LESSTHAN
+opRel ::= LESSTHAN:l {: RESULT = new OpRelDef(l); :}
 	|
-		MORETHAN
+		MORETHAN:m {: RESULT = new OpRelDef(m); :}
 	|
-		ASSIGNMENT
+		ASSIGNMENT:a {: RESULT = new OpRelDef(a); :}
 	|
 	
 	;
 
-opS ::= PLUS
+opS ::= PLUS:p {: RESULT = new OpSDef(p); :}
 	| 
-		MINUS
+		MINUS:m {: RESULT = new OpSDef(m); :}
 	;
-opM ::= MULT
+opM ::= MULT:m {: RESULT = new OpMDef(m); :}
 	|
-		DIV
+		DIV:d {: RESULT = new OpMDef(d); :}
 	;
 
-E ::= INTEGER 
+E ::= INTEGER:in {: RESULT = new EDef(in); :} 
 | 
-	IDENTIFIER
+	IDENTIFIER:id {: RESULT = new EDef(id); :}
 | 
-	IF E opRel E THEN E ELSE E 
+	IF:ife E:e1 opRel:opr E:e2 THEN:th E:e3 ELSE:el E:e4 {: RESULT = new EDef(ife,e1,opr,e2,th,e3,el,e4); :} 
 |
-	E opS E
+	E:e1 opS:ops E:e2 {: RESULT = new EDef(e1,ops,e2); :}
 |
-	E opM E
+	E:e1 opM:opm E:e2 {: RESULT = new EDef(e1,opm,e2); :}
 |
-	IDENTIFIER LEFTPAREN SEQ RIGHTPAREN
+	IDENTIFIER:id LEFTPAREN:lp SEQ:seq RIGHTPAREN:rp {: RESULT = new EDef(id,lp,seq,rp); :}
 ;

@@ -1,6 +1,6 @@
-def mod(a) = 
-	if a = b
-	 then b
-	 else a;
-def b ( a ) = 1;
-def h (g,f) =0;
+a = 312;
+d = 111;
+def mdc(a, b) = 
+ if if 1 < 2 then 3 else 4 > if 1 < 2 then 3 else 4
+ then 3 
+ else 4;

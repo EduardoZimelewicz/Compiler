@@ -7,12 +7,12 @@ import java.nio.file.Paths;
 public class Compilador {
     public static void main(String[] args) throws Exception {
         LexAnalyzer lexico = null;
-        parser p = null;
+        Parser p = null;
         boolean verificador = true;
-        String file = "C:/Users/Familia/Documents/Eclipse/Compilador/src/input.txt";
+        String file = "C:/Users/rodri/Documents/Eclipse-Workspace/Compilador/src/input.txt";
         
             lexico = new LexAnalyzer(new FileReader(file));
-            p = new parser (lexico);
+            p = new Parser (lexico);
             Arvore result = (Arvore)p.parse().value;
             System.out.println(result.toString());
             
