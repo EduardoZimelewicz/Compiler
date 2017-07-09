@@ -20,29 +20,29 @@ INTEIRO =  0 | [1-9][0-9]*
 
 %%
 
-"if" 				{return new Symbol(Sym.IF);}        		
-"then" 			{return new Symbol(Sym.THEN);}    
-"else" 			{return new Symbol(Sym.ELSE);}    
-"def" 			{return new Symbol(Sym.DEF);}
+"if" 				{return new Symbol(Sym.IF, new Token(yytext()));}        		
+"then" 			{return new Symbol(Sym.THEN, new Token(yytext()));}    
+"else" 			{return new Symbol(Sym.ELSE, new Token(yytext()));}    
+"def" 			{return new Symbol(Sym.DEF, new Token(yytext()));}
 
-">" 				{return new Symbol(Sym.LESSTHAN);}    
-"<" 				{return new Symbol(Sym.MORETHAN);}
-"=" 				{return new Symbol(Sym.ASSIGNMENT);}  
+">" 				{return new Symbol(Sym.LESSTHAN, new Token(yytext()));}    
+"<" 				{return new Symbol(Sym.MORETHAN, new Token(yytext()));}
+"=" 				{return new Symbol(Sym.ASSIGNMENT, new Token(yytext()));}  
 
-"+" 				{return new Symbol(Sym.PLUS);}
-"-" 				{return new Symbol(Sym.MINUS);} 
-"*" 				{return new Symbol(Sym.MULT);} 
-"/" 				{return new Symbol(Sym.DIV);} 
+"+" 				{return new Symbol(Sym.PLUS, new Token(yytext()));}
+"-" 				{return new Symbol(Sym.MINUS, new Token(yytext()));} 
+"*" 				{return new Symbol(Sym.MULT, new Token(yytext()));} 
+"/" 				{return new Symbol(Sym.DIV, new Token(yytext()));} 
 
-"(" 				{return new Symbol(Sym.LEFTPAREN);}
-")" 				{return new Symbol(Sym.RIGHTPAREN);}
-";" 				{return new Symbol(Sym.SEMICOLON);}
-"," 				{return new Symbol(Sym.COMMA);}
+"(" 				{return new Symbol(Sym.LEFTPAREN, new Token(yytext()));}
+")" 				{return new Symbol(Sym.RIGHTPAREN, new Token(yytext()));}
+";" 				{return new Symbol(Sym.SEMICOLON, new Token(yytext()));}
+"," 				{return new Symbol(Sym.COMMA, new Token(yytext()));}
 
 {BRANCO} 						{/*ignore*/}
 {COMENT_LINHA} 			{/*ignore*/}
 {COMENT_COLUNA} 		{/*ignore*/}
-{ID} 						{return new Symbol(Sym.IDENTIFIER);}
-{INTEIRO} 				{return new Symbol(Sym.INTEGER);}
+{ID} 						{return new Symbol(Sym.IDENTIFIER, new Token(yytext()));}
+{INTEIRO} 				{return new Symbol(Sym.INTEGER, new Token(yytext()));}
 
 [^]			{ throw new RuntimeException("Caractere invalido " + yytext() + " na linha " + (yyline+1) + ", coluna " +(yycolumn+1)); }

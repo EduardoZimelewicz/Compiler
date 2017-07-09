@@ -1,17 +1,17 @@
 import java_cup.runtime.*;
 
 /* Terminals */
-terminal COMMA, SEMICOLON, LEFTPAREN, RIGHTPAREN;
-terminal MORETHAN, LESSTHAN, MINUS, PLUS, MULT, DIV, ASSIGNMENT;
-terminal IF, ELSE, DEF, THEN;
-terminal IDENTIFIER;
-terminal Int INTEGER;
+terminal Token COMMA, SEMICOLON, LEFTPAREN, RIGHTPAREN;
+terminal Token MORETHAN, LESSTHAN, MINUS, PLUS, MULT, DIV, ASSIGNMENT;
+terminal Token IF, ELSE, DEF, THEN;
+terminal Token IDENTIFIER;
+terminal Token INTEGER;
 
 /* Nonterminals */
 non terminal opRel;
 non terminal opS;
 non terminal opM;
-non terminal P;
+non terminal Assignment P;
 non terminal I;
 non terminal D;
 non terminal ARGS;
@@ -27,14 +27,14 @@ precedence nonassoc COMMA;
 
 start with P;
 
-P ::= IDENTIFIER ASSIGNMENT INTEGER SEMICOLON P 
-|
-	I
+P ::= IDENTIFIER:id ASSIGNMENT INTEGER:integer SEMICOLON P:p {: RESULT = new Assignment(id, integer, p); :}
+| 	
+	I:i {: RESULT = new NonT(i); :} 
 ;
 
-I ::= D I
+I ::= D:d I:i {: RESULT = new NonT(d, i); :}
 | 
-	D
+	D:d {: RESULT = new NonT(d); :}  
 ;
 
 D ::= DEF IDENTIFIER LEFTPAREN ARGS RIGHTPAREN ASSIGNMENT E SEMICOLON

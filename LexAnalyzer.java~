@@ -636,71 +636,71 @@ class LexAnalyzer implements java_cup.runtime.Scanner {
             }
           case 21: break;
           case 3: 
-            { return new Symbol(Sym.DIV);
+            { return new Symbol(Sym.DIV, new Token(yytext()));
             }
           case 22: break;
           case 4: 
-            { return new Symbol(Sym.MULT);
+            { return new Symbol(Sym.MULT, new Token(yytext()));
             }
           case 23: break;
           case 5: 
-            { return new Symbol(Sym.IDENTIFIER);
+            { return new Symbol(Sym.IDENTIFIER, new Token(yytext()));
             }
           case 24: break;
           case 6: 
-            { return new Symbol(Sym.INTEGER);
+            { return new Symbol(Sym.INTEGER, new Token(yytext()));
             }
           case 25: break;
           case 7: 
-            { return new Symbol(Sym.LESSTHAN);
+            { return new Symbol(Sym.LESSTHAN, new Token(yytext()));
             }
           case 26: break;
           case 8: 
-            { return new Symbol(Sym.MORETHAN);
+            { return new Symbol(Sym.MORETHAN, new Token(yytext()));
             }
           case 27: break;
           case 9: 
-            { return new Symbol(Sym.ASSIGNMENT);
+            { return new Symbol(Sym.ASSIGNMENT, new Token(yytext()));
             }
           case 28: break;
           case 10: 
-            { return new Symbol(Sym.PLUS);
+            { return new Symbol(Sym.PLUS, new Token(yytext()));
             }
           case 29: break;
           case 11: 
-            { return new Symbol(Sym.MINUS);
+            { return new Symbol(Sym.MINUS, new Token(yytext()));
             }
           case 30: break;
           case 12: 
-            { return new Symbol(Sym.LEFTPAREN);
+            { return new Symbol(Sym.LEFTPAREN, new Token(yytext()));
             }
           case 31: break;
           case 13: 
-            { return new Symbol(Sym.RIGHTPAREN);
+            { return new Symbol(Sym.RIGHTPAREN, new Token(yytext()));
             }
           case 32: break;
           case 14: 
-            { return new Symbol(Sym.SEMICOLON);
+            { return new Symbol(Sym.SEMICOLON, new Token(yytext()));
             }
           case 33: break;
           case 15: 
-            { return new Symbol(Sym.COMMA);
+            { return new Symbol(Sym.COMMA, new Token(yytext()));
             }
           case 34: break;
           case 16: 
-            { return new Symbol(Sym.IF);
+            { return new Symbol(Sym.IF, new Token(yytext()));
             }
           case 35: break;
           case 17: 
-            { return new Symbol(Sym.DEF);
+            { return new Symbol(Sym.DEF, new Token(yytext()));
             }
           case 36: break;
           case 18: 
-            { return new Symbol(Sym.THEN);
+            { return new Symbol(Sym.THEN, new Token(yytext()));
             }
           case 37: break;
           case 19: 
-            { return new Symbol(Sym.ELSE);
+            { return new Symbol(Sym.ELSE, new Token(yytext()));
             }
           case 38: break;
           default:
