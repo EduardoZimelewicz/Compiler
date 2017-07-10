@@ -27,6 +27,12 @@ public class EDef extends Arvore {
 		this.leftparen = null;
 		this.seq = null;
 		this.rightparen = null;
+		try {
+		this.valor = Integer.parseInt(valor.value);
+		}
+		catch(NumberFormatException e){
+			this.identifier = valor.value;
+		}
 	}
 
 	public EDef(EDef e1, OpSDef ops, EDef e2) {
@@ -56,7 +62,7 @@ public class EDef extends Arvore {
 		if (lista == null) {
 			lista = new ArrayList<>();
 		}
-		lista.add(new ID(Tabela.getKey(), " a", this.valor));
+		lista.add(new ID(Tabela.getKey(), ops.toString(), this.valor));
 		Tabela.set(Tabela.getKey(), lista);
 
 	}
@@ -88,7 +94,7 @@ public class EDef extends Arvore {
 		if (lista == null) {
 			lista = new ArrayList<>();
 		}
-		lista.add(new ID(Tabela.getKey(), " a", this.valor));
+		lista.add(new ID(Tabela.getKey(), opm.toString(), this.valor));
 		Tabela.set(Tabela.getKey(), lista);
 	}
 
@@ -133,7 +139,7 @@ public class EDef extends Arvore {
 		if (lista == null) {
 			lista = new ArrayList<>();
 		}
-		lista.add(new ID(Tabela.getKey(), " a", this.valor));
+		lista.add(new ID(Tabela.getKey(), opr.toString(), this.valor));
 		// Tabela.set(Tabela.getKey(), lista);
 	}
 

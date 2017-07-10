@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 
 public class Tabela {
 	public static Map<Integer,ArrayList<ID>> map = new HashMap<>();
-	public static int key = 1;
+	public static int key = -1;
 	
 	public static ArrayList<ID> lookup(int valor) {
 		return map.get(valor);

@@ -12,10 +12,15 @@ public class PDef extends Arvore {
 		this.dir = Integer.parseInt(dir.value);
 		this.p = p;
 		this.i = null;
-		this.lista = new ArrayList<>();
-		int escopo = Tabela.getKey();		
+		if(Tabela.lookup(Tabela.getKey()) == null) {
+			this.lista = new ArrayList<>();
+		}
+		else {
+			this.lista = Tabela.lookup(Tabela.getKey());
+		}
+		int escopo = Tabela.getKey();
 		lista.add(new ID(escopo, this.esq, this.dir));
-		Tabela.increaseKey();
+		//Tabela.increaseKey();
 		Tabela.set(escopo,lista);
 	}
 

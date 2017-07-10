@@ -14,7 +14,7 @@ public class Define extends Arvore{
   this.rightParen = rightParen.value;
   this.args = args;
   this.e = e;
-  
+  Tabela.increaseKey();
  }
  
  public String toString() {
