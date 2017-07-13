@@ -1,0 +1,38 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package compilador;
+
+import java.io.FileReader;
+import java.io.StringReader;
+import java.nio.file.Paths;
+
+/**
+ *
+ * @author Beatriz
+ */
+public class Compilador {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Yylex lexico = null;
+        parser p = null;
+        String rootPath = Paths.get("").toAbsolutePath(). toString();
+        String subPath = "/src/compilador/";
+
+        String file = rootPath + subPath + "codigo.txt";
+        try{
+            lexico = new Yylex(new FileReader(file));
+            p = new parser (lexico);
+            p.parse();
+            
+        } catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+}

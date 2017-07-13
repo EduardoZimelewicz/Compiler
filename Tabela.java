@@ -7,6 +7,7 @@ public class Tabela {
 	public static Map<Integer,ArrayList<ID>> map = new HashMap<>();
 	public static int key = 0;
 	
+	
 	public static ArrayList<ID> lookup(int valor) {
 		return map.get(valor);
 	}

@@ -33,6 +33,7 @@ public class Define extends Arvore{
 		}
 	}
   lista.add(this.id);
+  ArgsDef.contador++;
   Tabela.set(escopo,lista);
   //Tabela.increaseKey();
  }
