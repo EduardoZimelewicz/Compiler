@@ -1,6 +1,6 @@
 a = 312;
 d = 111;
-def mdc(a, b) = 
+def mdc(a, b) =  
  if if 1 < 2 then 3 else 4 > if 1 < 2 then 3 else 4
  then 3 
  else 4;

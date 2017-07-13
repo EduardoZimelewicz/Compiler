@@ -9,7 +9,7 @@ public class Compilador {
         LexAnalyzer lexico = null;
         Parser p = null;
         boolean verificador = true;
-        String file = "src/input4.txt";
+        String file = "src/input.txt";
         
             lexico = new LexAnalyzer(new FileReader(file));
             p = new Parser (lexico);

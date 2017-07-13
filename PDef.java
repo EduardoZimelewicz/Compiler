@@ -5,6 +5,7 @@ public class PDef extends Arvore {
 	public Integer dir;
 	public PDef p;
 	public IDef i;
+	public ID id;
 	public ArrayList<ID> lista;
 
 	public PDef(Token esq, Token dir, PDef p) {
@@ -19,11 +20,28 @@ public class PDef extends Arvore {
 			this.lista = Tabela.lookup(Tabela.getKey());
 		}
 		int escopo = Tabela.getKey();
-		lista.add(new ID(escopo, this.esq, this.dir));
-		//Tabela.increaseKey();
+		this.id = new ID(escopo, this.esq, this.dir); 
+		if(Tabela.lookup(escopo) != null) {
+			for(int i = 0; i < this.lista.size(); i++) {
+				if(lista.get(i).identificador.equals(this.id.identificador)) {
+					System.out.println("Erro de semantica, variaveis iguais em mesmo escopo");
+					System.exit(1);
+				}
+			}
+		}
+		lista.add(this.id);
 		Tabela.set(escopo,lista);
 	}
 
+	public PDef(PDef p) {
+		this.esq = null;
+		this.dir = null;
+		this.p = p;
+		this.i = null;
+		this.lista = new ArrayList<>();
+	}
+
+	
 	public PDef(IDef i) {
 		this.esq = null;
 		this.dir = null;

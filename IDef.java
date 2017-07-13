@@ -1,4 +1,3 @@
-
 public class IDef extends Arvore{
 	Define valor1;
 	IDef valor2;
@@ -22,7 +21,7 @@ public class IDef extends Arvore{
 	
 	@Override
 	public String toString() {
-		String retorno ="";
+		String retorno = "";
 		if(valor2==null) {
 			retorno = valor1.toString();
 		}else {

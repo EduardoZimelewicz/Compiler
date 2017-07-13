@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ArgsDef extends Arvore{
 	String id;
@@ -8,6 +9,7 @@ public class ArgsDef extends Arvore{
 		this.id = id.value;
 		this.c = c.value;
 		this.args = args;
+		
 	}
 	
 	public ArgsDef(Token id) {

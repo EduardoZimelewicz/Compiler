@@ -29,7 +29,8 @@ start with P;
 
 P ::= IDENTIFIER:id ASSIGNMENT INTEGER:integer SEMICOLON P:p {: RESULT = new PDef(id, integer, p); :}
 | 	
-	I:i {: RESULT = new PDef(i); :} 
+	I:i {: RESULT = new PDef(i); :}
+| 
 ;
 
 I ::= D:d I:i {: RESULT = new IDef(d,i); :}  

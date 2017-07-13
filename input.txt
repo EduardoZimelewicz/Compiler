@@ -9,4 +9,4 @@ def mdc(a,b) =
 def mod(a,b) =
 	if a< b
 	 then a
-	 else mod(a - b,b);	 
+	 else mod(a - b,b);
