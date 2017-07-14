@@ -5,7 +5,7 @@ c = 321;
 def mdc(a,b) =
 	if mod(a,b)= 0
 	 then b
-	 else mdc(b,mod(a,a));
+	 else mdc(b,mod(a,b));
 def mmc(a,b) =
 	if a< b
 	 then a
